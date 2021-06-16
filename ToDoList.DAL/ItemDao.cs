@@ -85,7 +85,7 @@ namespace ToDoList.DAL
                     catch(SerializationException ex)
                     {
                         Console.WriteLine(ex.Message);
-                        return null;
+                        return items;
                     }
                 }
                 return items;
@@ -93,7 +93,7 @@ namespace ToDoList.DAL
             catch (IOException ex)
             {
                 Console.WriteLine(ex.Message);
-                return null;
+                return items;
             }
         }
 

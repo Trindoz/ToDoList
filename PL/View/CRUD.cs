@@ -28,7 +28,8 @@ namespace ConsolePL.View
         public bool Add(int command)
         {
             Models.Item itemView = new Models.Item();
-            var itemsDB = itemLogic.GetAll();
+            var itemsDB = new List<Entities.Item>();
+            itemsDB = itemLogic.GetAll();
             switch (command)
             {
                 case 1:
@@ -282,8 +283,7 @@ namespace ConsolePL.View
                 Console.WriteLine("Введеное значение должно быть числом!");
                 Finish();
             }
-            var itemToFinish = itemLogic.GetAll().FirstOrDefault(i => i.Id == id);
-            itemToFinish.Finished = true;
+            var itemToFinish = itemLogic.GetAll().FirstOrDefault(i => i.Id == id);            
             if (itemToFinish == null)
             {
                 Console.WriteLine($"Задачи с номером {id} не существует");
@@ -291,6 +291,7 @@ namespace ConsolePL.View
             }
             else
             {
+                itemToFinish.Finished = true;
                 itemLogic.Update(itemToFinish, id);
                 Console.WriteLine($"Задача {id} завершена");
             }
